@@ -1,0 +1,32 @@
+<%- include('../Includes/head.ejs')  %>
+    <%- include('../Includes/navigation.ejs')  %>
+
+        <main>
+            <form action='/admin/<%if (editing) { %>edit-product<% } else { %>add-product<% } %>' method="POST">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <div class='form-control'>
+                            <label for="exampleInputEmail1">Item</label>
+                            <input type="text"  name="title"  value="<% if (editing) { %><%=product.title%> <% } %>">
+                        </div>
+                        <div class='form-control'>
+                            <label for="imgUrl">Image URL</label>
+                            <input type="text"  name="imgUrl"   value="<% if (editing) { %><%=product.imageURL%> <% } %>">
+                        </div> 
+                        <div class='form-control'>
+                            <label for="price">Price</label>
+                            <input type="number" name="price" id="price" step="0.01" value="<% if (editing) { %><%= product.price %><% } %>">
+                        </div>
+                        <div class='form-control'>
+                            <label for="desc">Description</label>
+                            <textarea type="text" name="desc"  id='desc'  rows="5"><% if (editing) { %> <%=product.description%> <% } %></textarea>
+                        </div>
+                        <% if (editing) { %><input type='hidden' value='<%=product.id%>' name='productId'><% } %>
+                        <button type="submit" class="btn btn-primary"><% if(editing) { %>Update Product <% } else { %> Add Product <% } %></button>
+                    </div>
+                   
+                </div>
+            </form>
+        </main>
+
+<%- include('../Includes/end.ejs')  %>
